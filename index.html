@@ -2,9 +2,139 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<script src="https://unpkg.com/react@15/dist/react.js"></script>
+	<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
+
 	<title>Document</title>
 </head>
 <body>
-	aaa
+	
+	<div id="content"></div>
+	<div id="timer"></div>
+
+
+	<script type="text/babel">
+
+		var CONTACTS = [
+			{
+				id: 1,
+				name: "Emmet",
+				phoneNumber: "12312312",
+				img: "http://awdawdawdaw"
+			},
+			{
+				id: 2,
+				name: "Babel",
+				phoneNumber: "1236662",
+				img: "http://awdawdawdaw"
+			},
+			{
+				id: 3,
+				name: "React",
+				phoneNumber: "333",
+				img: "http://awdawdawdaw"
+			},
+			{
+				id: 4,
+				name: "Anglar",
+				phoneNumber: "12312777312",
+				img: "http://awdawdawdaw"
+			}
+		];
+
+		var Contact = React.createClass({
+			render: function() {
+				return 	<li key="{this.props.key}" className="contact">
+							<img src={this.props.img} />
+							<div className="contact-info">
+								<div className="contact-name"> {this.props.name} </div>
+								<div className="contact-number"> {this.props.phoneNumber} </div>
+							</div>
+						</li>;
+			}
+		});
+
+		var ContactsList = React.createClass({
+
+			getInitialState: function() {
+				return {
+					displayedContacts: CONTACTS
+				};
+			},
+	
+			handleSearch: function(e) {
+				var searchQuery = e.target.value.toLowerCase();
+				var displayedContacts = CONTACTS.filter(function(el) {
+					var searchValue = el.name.toLowerCase();
+					return searchValue.indexOf(searchQuery) !== -1;
+				});
+
+				this.setState({
+					displayedContacts: displayedContacts
+				});
+			},
+
+			render: function() {
+				return (
+					<div className="contacts">
+						<input type="text" className="search-field" onChange={this.handleSearch} />
+						<ul className="contacts-list">
+							{
+								this.state.displayedContacts.map(function(el) {
+									return <Contact 
+										key={el.id} 
+										name={el.name}
+										phoneNumber={el.phoneNumber}
+										img={el.img} />;
+								})
+							}
+						</ul>
+					</div>
+				)
+			}
+		})
+
+		ReactDOM.render(
+		    <ContactsList />, document.getElementById('content')
+		);
+
+		var Timer = React.createClass({
+
+			getInitialState: function() {
+				return {
+					timer: new Date()
+				};
+			},
+
+			componentDidMount() {
+			    this.timer = setInterval(
+			       () => this.tick(),
+			       1000
+			    );
+			},
+
+			tick: function() {
+				this.setState({
+					timer: new Date()
+				})
+			},
+
+		    render: function () {
+		        return (
+		            <div>
+		                <p>The time is {this.state.timer.toLocaleTimeString()}</p>
+		            </div>
+		        )
+		    }
+		});
+
+		ReactDOM.render(
+		    <Timer />, document.getElementById('timer')
+		);
+		
+				
+	</script>
+
 </body>
 </html>
