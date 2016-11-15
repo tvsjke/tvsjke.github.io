@@ -1,0 +1,74 @@
+* { 
+	box-sizing: border-box;
+ }
+
+ ::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+#content {
+	text-align: center;	
+}
+
+.search-field {
+	margin-bottom: 20px;
+}
+
+.tasks {
+	width: 600px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.tasks-list {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 600px;
+}
+
+.tasks .task {
+	border: 2px solid black;
+	margin: 20px 0;
+	padding: 20px;
+}
+
+.task-add {
+	width: 25px;
+	height: 25px;
+	border-radius: 10%;
+	margin-bottom: 20px;
+	color: white;
+	background-color: green;
+	line-height: 25px;
+	text-align: center;
+	font-size: 22px;
+	cursor: pointer;
+	-webkit-transition: all 0.1	s ease-in-out; 
+}
+
+.task {
+	position: relative;
+}
+
+.task-remove {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	background: url('../img/error.png') no-repeat 0 0;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.task-add:hover {
+	-webkit-transform: scale(1.1,1.1);
+}
+
+.newtask-description {
+	width: 100%;
+}
