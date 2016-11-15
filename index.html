@@ -135,14 +135,16 @@
 						<input type="text" className="search-field" onChange={this.handleSearch} />
 						<Add addTask={this.AddTask} name="+" /> 
 						<div className="tasks-list">
-							{								
-								this.state.displayedTasks.map(function(el) {									
-									return <Task 
-										key={el.id} 
-										name={el.name}
-										description={el.description}
-										removeTask={self.RemoveTask.bind(self, el.id)}/>;
-								})
+							{		
+								this.state.displayedTasks ? 
+									this.state.displayedTasks.map(function(el) {									
+										return <Task 
+											key={el.id} 
+											name={el.name}
+											description={el.description}
+											removeTask={self.RemoveTask.bind(self, el.id)}/>;
+									})
+								 : false
 							}
 						</div>
 					</div>
