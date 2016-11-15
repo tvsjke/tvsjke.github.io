@@ -22,9 +22,11 @@
 		var localStorageAdd = function(key, value) {
 			var jsonArray = JSON.parse(localStorage.getItem(key));
 			var lastID = 0;
-			jsonArray.forEach(function(item) {
-				if(item.id > lastID) lastID = item.id;
-			});
+			if(!$.isEmptyObject(jsonArray)) {
+				jsonArray.forEach(function(item) {
+					if(item.id > lastID) lastID = item.id;
+				});
+				}			
 			value.id = lastID + 1;
 			jsonArray.push(value);
 			localStorage.setItem(key, JSON.stringify(jsonArray));
