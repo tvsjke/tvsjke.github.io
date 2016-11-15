@@ -13,7 +13,6 @@
 	
 	<div id="content"></div>
 
-
 	<script type="text/babel">
 
 		var localStorageGet = function(key) {
@@ -136,7 +135,7 @@
 						<Add addTask={this.AddTask} name="+" /> 
 						<div className="tasks-list">
 							{		
-								this.state.displayedTasks ? 
+								!$.isEmptyObject(this.state.displayedTasks) ? 
 									this.state.displayedTasks.map(function(el) {									
 										return <Task 
 											key={el.id} 
